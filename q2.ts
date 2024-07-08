@@ -6,9 +6,9 @@ const getTodo = async (todoId: number) => {
   /* Your code here */
   try{
     const userId = await axios.get(`https://jsonplaceholder.typicode.com/todos/${todoId}`);
-    const todo = userId.data.results;
+    const todo = userId.data;
     const res = await axios.get(`https://jsonplaceholder.typicode.com/users/${userId}`);
-    const users = res.data.results;
+    const users = res.data;
 
     const output = users.map((user:any)=>{
         return {
