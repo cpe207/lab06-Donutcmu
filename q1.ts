@@ -7,13 +7,11 @@ const getUser = async (userId: number) => {
   try{
     const res = await axios.get(`https://jsonplaceholder.typicode.com/users/${userId}`);
     const users = res.data;
-    const output = users.map((user:any)=>{
-          return user.name.first+user.name.last;
-    })
-    console.log(output);
+    return users.name;
+    
   }
   catch(err){
-    console.log("INVALID USER ID");
+    return "INVALID USER ID";
   }
 }
 

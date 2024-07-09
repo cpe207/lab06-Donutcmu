@@ -5,24 +5,19 @@ import axios from "axios";
 const getTodo = async (todoId: number) => {
   /* Your code here */
   try{
-    const userId = await axios.get(`https://jsonplaceholder.typicode.com/todos/${todoId}`);
-    const todo = userId.data;
-    const res = await axios.get(`https://jsonplaceholder.typicode.com/users/${userId}`);
+    const user1 = await axios.get(`https://jsonplaceholder.typicode.com/todos/${todoId}`);
+    const todo = user1.data.userId;
+    const res = await axios.get(`https://jsonplaceholder.typicode.com/users/${todo}`);
     const users = res.data;
-
-    const output = users.map((user:any)=>{
-        return {
-            owner:user.name.first+user.name.last,
-            title:todo.title ,
-            completed:todo.completed
-
+    return {
+            owner:users.name,
+            title:user1.data.title ,
+            completed:user1.data.completed
         }
-    })
-    //console.log(res.data); 
-    console.log(output); 
+    
     }
  catch(err){
-    console.log("INVALID TODO ID");
+    return "INVALID USER ID";
 }
 };   
 
